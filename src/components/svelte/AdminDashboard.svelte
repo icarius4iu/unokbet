@@ -1,10 +1,11 @@
 <script lang="ts">
   import UserManagement from "./UserManagement.svelte";
   import CalendarForm from "./CalendarForm.svelte";
+  import BonusesForm from "./BonusesForm.svelte";
 
-  let activeTab: "users" | "calendar" = "users";
+  let activeTab: "users" | "calendar" | "bonuses" = "users";
 
-  function setTab(tab: "users" | "calendar") {
+  function setTab(tab: "users" | "calendar" | "bonuses") {
     activeTab = tab;
   }
 </script>
@@ -35,14 +36,22 @@
       >
         <i class="fas fa-calendar-plus mr-2"></i> Calendario
       </button>
+      <button
+        on:click={() => setTab("bonuses")}
+        class={`px-6 py-2 rounded-md font-bold text-sm transition-all ${activeTab === "bonuses" ? "bg-primary text-secondary shadow-lg" : "text-gray-400 hover:text-white"}`}
+      >
+        <i class="fas fa-gift mr-2"></i> Bonos
+      </button>
     </div>
   </div>
 
   <div class="mt-6">
     {#if activeTab === "users"}
       <UserManagement />
-    {:else}
+    {:else if activeTab === "calendar"}
       <CalendarForm />
+    {:else}
+      <BonusesForm />
     {/if}
   </div>
 </div>

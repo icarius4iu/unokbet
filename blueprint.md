@@ -35,4 +35,5 @@ This project is a multi-functional web application built with Astro.js, designed
 3.  **Add Content to Components:** Populate the components with the necessary HTML and logic.
 4.  **Install and Configure Tailwind CSS:** Set up Tailwind CSS to style the admin panel.
 5.  **Integrate Components:** Import and use the created components within the `admin.astro` page.
-6.  **Update Blueprint:** Reflect the changes in the `blueprint.md` file.
+6.  **Add Bonuses Management:** Create `BonusesForm.svelte` and integrate it into `AdminDashboard.svelte` as a new tab.
+7.  **Update Blueprint:** Reflect the changes in the `blueprint.md` file.
