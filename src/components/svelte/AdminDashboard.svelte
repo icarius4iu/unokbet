@@ -134,7 +134,7 @@
       in:fade={{ delay: 200, duration: 500 }}
     >
       <div
-        class="flex bg-[#0B0D11]/90 p-1.5 rounded-2xl border border-white/10 w-fit backdrop-blur-xl shadow-2xl mx-auto md:mx-0"
+        class="flex bg-[#0B0D11]/90 p-1.5 rounded-2xl border border-white/10 w-fit backdrop-blur-xl shadow-2xl mx-auto"
       >
         {#each tabs as tab}
           <button

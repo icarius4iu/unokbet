@@ -32,7 +32,7 @@
 </script>
 
 <div
-  class="bg-[#13151A]/60 backdrop-blur-xl border border-white/5 rounded-3xl p-8 shadow-2xl relative overflow-hidden"
+  class="max-w-4xl mx-auto bg-[#13151A]/60 backdrop-blur-xl border border-white/5 rounded-3xl p-8 shadow-2xl relative overflow-hidden"
 >
   <!-- Decoration -->
   <div
@@ -42,7 +42,10 @@
     Agregar Nueva Promoción
   </h2>
 
-  <form on:submit|preventDefault={handleSubmit} class="space-y-6 max-w-2xl">
+  <form
+    on:submit|preventDefault={handleSubmit}
+    class="space-y-6 max-w-2xl mx-auto"
+  >
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       <div class="col-span-1 md:col-span-2">
         <label class="block text-gray-300 text-sm font-bold mb-2"
