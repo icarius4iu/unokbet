@@ -1,43 +1,43 @@
 ---
 import MainLayout from "../../layouts/MainLayout.astro";
 import BonusList from "../../components/svelte/bonuses/BonusList.svelte";
-import { bonuses } from "../../data/bonuses";
+import { bonuses } from "../../components/data/bonuses";
 ---
 
 <MainLayout title="Bonos de Bienvenida - Caja Fuerte">
+  <div
+    class="min-h-screen pb-20 pt-24 overflow-hidden relative pattern-bg-dark"
+  >
+    <!-- Overlay Gradient for better text readability -->
     <div
-        class="min-h-screen pb-20 pt-24 overflow-hidden relative pattern-bg-dark"
+      class="absolute inset-0 bg-gradient-to-b from-[#13151A]/30 via-[#13151A]/80 to-[#13151A] z-0"
     >
-        <!-- Overlay Gradient for better text readability -->
-        <div
-            class="absolute inset-0 bg-gradient-to-b from-[#13151A]/30 via-[#13151A]/80 to-[#13151A] z-0"
-        >
-        </div>
-
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <!-- Hero Title -->
-            <div class="text-center mb-12">
-                <h1
-                    class="text-4xl md:text-5xl font-display font-bold text-white mb-4 drop-shadow-lg"
-                >
-                    Bonos de Bienvenida
-                </h1>
-                <p class="text-gray-400 font-medium text-lg max-w-2xl mx-auto">
-                    Descubre nuestros increíbles bonos diseñados para maximizar
-                    tu experiencia de juego
-                </p>
-            </div>
-
-            <BonusList client:load bonuses={bonuses} />
-        </div>
     </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <!-- Hero Title -->
+      <div class="text-center mb-12">
+        <h1
+          class="text-4xl md:text-5xl font-display font-bold text-white mb-4 drop-shadow-lg"
+        >
+          Bonos de Bienvenida
+        </h1>
+        <p class="text-gray-400 font-medium text-lg max-w-2xl mx-auto">
+          Descubre nuestros increíbles bonos diseñados para maximizar tu
+          experiencia de juego
+        </p>
+      </div>
+
+      <BonusList client:load bonuses={bonuses} />
+    </div>
+  </div>
 </MainLayout>
 
 <style>
-    .pattern-bg-dark {
-        background-color: #13151a;
-        /* Cyan dumbbell pattern with higher opacity */
-        background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%230CF2F2' fill-opacity='0.1'%3E%3Cpath d='M15 26h30v8H15zM8 20h10v20H8zM42 20h10v20H42z'/%3E%3C/g%3E%3C/svg%3E");
-        background-size: 80px 80px;
-    }
+  .pattern-bg-dark {
+    background-color: #13151a;
+    /* Cyan dumbbell pattern with higher opacity */
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%230CF2F2' fill-opacity='0.1'%3E%3Cpath d='M15 26h30v8H15zM8 20h10v20H8zM42 20h10v20H42z'/%3E%3C/g%3E%3C/svg%3E");
+    background-size: 80px 80px;
+  }
 </style>
