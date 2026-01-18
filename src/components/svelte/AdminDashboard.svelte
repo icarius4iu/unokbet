@@ -5,8 +5,14 @@
   import AdminLogin from "./AdminLogin.svelte"; // [NEW] Import
   import { fade, fly } from "svelte/transition";
 
+  import { onMount } from "svelte";
+  import { auth } from "../../services/firebaseAuthentication/auth";
+  import { onAuthStateChanged } from "firebase/auth";
+  import { getUserRole } from "../../services/firebaseFirestore/users";
+
   // Auth State
   let isAuthenticated = false; // Default to locked
+  let isCheckingAuth = true; // [NEW] Loading state for initial check
 
   let activeTab: "users" | "calendar" | "bonuses" = "users";
 
@@ -17,6 +23,24 @@
   function handleLoginSuccess() {
     isAuthenticated = true;
   }
+
+  onMount(() => {
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        const role = await getUserRole(user.uid);
+        if (role === "admin") {
+          isAuthenticated = true;
+        } else {
+          isAuthenticated = false;
+        }
+      } else {
+        isAuthenticated = false;
+      }
+      isCheckingAuth = false;
+    });
+
+    return unsubscribe;
+  });
 
   const tabs: {
     id: "users" | "calendar" | "bonuses";
@@ -66,7 +90,13 @@
 </script>
 
 <div class="flex-1 p-6 lg:p-10 text-white min-h-screen">
-  {#if !isAuthenticated}
+  {#if isCheckingAuth}
+    <div class="flex items-center justify-center h-full min-h-screen">
+      <div
+        class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"
+      ></div>
+    </div>
+  {:else if !isAuthenticated}
     <!-- Login View -->
     <div class="flex items-center justify-center h-full pt-10">
       <AdminLogin on:login={handleLoginSuccess} />
