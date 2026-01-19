@@ -34,13 +34,14 @@ Este proyecto es una aplicación web multifuncional construida con Astro.js, dis
 
 ## Tarea Actual
 
-### Plan Completado:
+### En Progreso:
 
-1.  **Dashboard Interactivo:** Implementación de `AdminDashboard.svelte` con navegación por pestañas.
-2.  **Autenticación:** Implementación de `AdminLogin.svelte` para proteger el acceso.
-3.  **Estilos:** Ajustes de centrado y diseño visual (Glassmorphism).
+1.  **Mantenimiento de Ramas:**
+    - Fusionar rama `feature/bug-fix-bonos` a `main`.
+    - Fusionar rama `feature/auth-roles-distinction` a `main`.
+    - Eliminar ramas locales fusionadas.
 
 ### Próximos Pasos:
 
-1.  **Integración con Backend:** Reemplazar datos simulados con llamadas reales a API/Firebase.
-2.  **Validación de Formularios:** Mejorar la validación en los formularios de gestión.
+1.  **Integración con Backend (Continuación):** Reemplazar datos simulados con llamadas reales a API/Firebase.
+2.  **Validación de Formularios (Continuación):** Mejorar la validación en los formularios de gestión.
