@@ -34,14 +34,13 @@ Este proyecto es una aplicación web multifuncional construida con Astro.js, dis
 
 ## Tarea Actual
 
-### En Progreso:
+### Completado:
 
 1.  **Mantenimiento de Ramas:**
-    - Fusionar rama `feature/bug-fix-bonos` a `main`.
-    - Fusionar rama `feature/auth-roles-distinction` a `main`.
-    - Eliminar ramas locales fusionadas.
+    - Se fusionaron las ramas `feature/bug-fix-bonos` y `feature/auth-roles-distinction` a `main`.
+    - Ramas locales eliminadas.
 
 ### Próximos Pasos:
 
-1.  **Integración con Backend (Continuación):** Reemplazar datos simulados con llamadas reales a API/Firebase.
-2.  **Validación de Formularios (Continuación):** Mejorar la validación en los formularios de gestión.
+1.  **Integración con Backend:** Reemplazar datos simulados con llamadas reales a API/Firebase.
+2.  **Validación de Formularios:** Mejorar la validación en los formularios de gestión.
