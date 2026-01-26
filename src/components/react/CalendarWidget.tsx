@@ -46,6 +46,14 @@ export const CalendarWidget: React.FC<CalendarWidgetProps> = ({ initialPromos = 
         fetchEvents();
     }, []);
 
+    // Helper: Get local date string (YYYY-MM-DD) without timezone shift
+    const getLocalDateStr = (date: Date) => {
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        return `${year}-${month}-${day}`;
+    };
+
     // Helper Functions
     const getDaysToShow = () => {
         const days = [];
@@ -83,8 +91,8 @@ export const CalendarWidget: React.FC<CalendarWidgetProps> = ({ initialPromos = 
         // 2. Map to display range
         const viewStart = daysToShow[0];
         const viewEnd = daysToShow[daysToShow.length - 1];
-        const viewStartStr = viewStart.toISOString().split('T')[0];
-        const viewEndStr = viewEnd.toISOString().split('T')[0];
+        const viewStartStr = getLocalDateStr(viewStart);
+        const viewEndStr = getLocalDateStr(viewEnd);
 
         // Filter out events strictly outside the view
         filtered = filtered.filter((p: Promo) => p.endDate >= viewStartStr && p.startDate <= viewEndStr);
@@ -92,21 +100,31 @@ export const CalendarWidget: React.FC<CalendarWidgetProps> = ({ initialPromos = 
         // 3. Calculate Layout
         // We need to determine grid columns (1-based)
         const eventsWithLayout = filtered.map((p: Promo) => {
-            const startDiff = (new Date(p.startDate).getTime() - viewStart.getTime()) / (1000 * 60 * 60 * 24);
-            const duration = (new Date(p.endDate).getTime() - new Date(p.startDate).getTime()) / (1000 * 60 * 60 * 24) + 1;
+            // Parse dates without timezone issues
+            const eventStart = new Date(p.startDate + 'T00:00:00');
+            const eventEnd = new Date(p.endDate + 'T00:00:00');
+            const viewStartTime = new Date(viewStartStr + 'T00:00:00').getTime();
 
-            let colStart = Math.max(1, Math.ceil(startDiff) + 1);
-            let colSpan = Math.min(7, duration);
+            const startDiff = Math.floor((eventStart.getTime() - viewStartTime) / (1000 * 60 * 60 * 24));
+            const duration = Math.floor((eventEnd.getTime() - eventStart.getTime()) / (1000 * 60 * 60 * 24)) + 1;
 
-            // Adjust for clipping on left side
+            let colStart = Math.max(1, startDiff + 1);
+            let colSpan = duration;
+
+            // Adjust for clipping on left side (event started before view)
             if (startDiff < 0) {
-                colSpan = Math.max(1, duration + startDiff); // reduce span by cutoff amount
+                colStart = 1;
+                colSpan = duration + startDiff; // reduce span by days before view 
             }
-            // Adjust for clipping on right side
-            const endCol = colStart + colSpan;
-            if (endCol > 8) { // 7 days + 1
-                colSpan = 8 - colStart;
+
+            // Adjust for clipping on right side (event ends after view)
+            const endCol = colStart + colSpan - 1;
+            if (endCol > 7) {
+                colSpan = 7 - colStart + 1;
             }
+
+            // Ensure colSpan is at least 1
+            colSpan = Math.max(1, colSpan);
 
             return { ...p, colStart, colSpan };
         });
@@ -156,7 +174,7 @@ export const CalendarWidget: React.FC<CalendarWidgetProps> = ({ initialPromos = 
 
         return { events: expandedEvents, rowCount: rows.length };
 
-    }, [activeFilter, viewMode, currentDate, initialPromos]);
+    }, [activeFilter, viewMode, currentDate, events]);
 
     return (
         <div className="bg-background-light dark:bg-background-dark min-h-screen pb-20">
