@@ -1,90 +1,96 @@
 ---
+
 ---
-<!DOCTYPE html>
+
+<!doctype html>
 <html class="scroll-smooth" lang="es">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Caja Fuerte - Comunidad Educativa de Apuestas</title>
-    <link href="https://fonts.googleapis.com" rel="preconnect" />
-    <link crossorigin rel="preconnect" href="https://fonts.gstatic.com" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@400;600;700;800&display=swap"
-        rel="stylesheet"
-    />
-    <link
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-        rel="stylesheet"
-    />
-    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
-    <script>
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        primary: "#0cf2f2", // Turquoise
-                        secondary: "#042f40", // Deep Navy
-                        accent: {
-                            yellow: "#F2D230",
-                            orange: "#F27F1B",
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Caja Fuerte - Comunidad Educativa de Apuestas</title>
+        <link href="https://fonts.googleapis.com" rel="preconnect" />
+        <link crossorigin rel="preconnect" href="https://fonts.gstatic.com" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@400;600;700;800&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+            rel="stylesheet"
+        />
+        <script src="https://cdn.tailwindcss.com?plugins=forms,typography"
+        ></script>
+        <script>
+            tailwind.config = {
+                darkMode: "class",
+                theme: {
+                    extend: {
+                        colors: {
+                            primary: "#8fd65e", // Neon Green
+                            secondary: "#f4c430", // Gold
+                            accent: {
+                                yellow: "#f4c430",
+                                orange: "#F27F1B",
+                            },
+                            "brand-slate": "#53757e", // Slate Blue
+                            "background-light": "#062c36", // Deep Teal (Forced)
+                            "background-dark": "#062c36", // Deep Teal
+                            "text-main-light": "#ffffff", // White (Forced)
+                            "text-main-dark": "#ffffff",
+                            "surface-light": "#53757e", // Slate (Forced)
+                            "surface-dark": "#53757e",
+                            "surface-darker": "#04232b",
                         },
-                        "background-light": "#f8fafc", // Slate 50
-                        "background-dark": "#042f40", // Deep Navy
-                        "text-main-light": "#042f40",
-                        "text-main-dark": "#ffffff",
-                        "surface-light": "#ffffff",
-                        "surface-dark": "#063b50", // Slightly lighter navy for cards
-                        "surface-darker": "#03222f", // Darker navy for specific sections
-                    },
-                    fontFamily: {
-                        display: ["Outfit", "sans-serif"],
-                        body: ["Inter", "sans-serif"],
-                    },
-                    borderRadius: {
-                        DEFAULT: "0.75rem",
-                        xl: "1rem",
-                        "2xl": "1.5rem",
-                        "3xl": "2rem",
+                        fontFamily: {
+                            display: ["Outfit", "sans-serif"],
+                            body: ["Inter", "sans-serif"],
+                        },
+                        borderRadius: {
+                            DEFAULT: "0.75rem",
+                            xl: "1rem",
+                            "2xl": "1.5rem",
+                            "3xl": "2rem",
+                        },
                     },
                 },
-            },
-        };
-    </script>
-    <style>
-        .text-gradient {
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .no-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-        .no-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-        .street-text-3d {
-            color: #ffffff;
-            text-shadow: 4px 4px 0px #042f40, 8px 8px 0px #0cf2f2;
-            transform: skew(-5deg) rotate(-2deg);
-        }
-    </style>
-</head>
-<body
-    class="bg-background-light dark:bg-background-dark text-text-main-light dark:text-main-dark font-body antialiased transition-colors duration-300"
->
-    <slot />
-    <script>
-        if (
-            localStorage.theme === "dark" ||
-            (!("theme" in localStorage) &&
-                window.matchMedia("(prefers-color-scheme: dark)").matches)
-        ) {
-            document.documentElement.classList.add("dark");
-        } else {
-            document.documentElement.classList.remove("dark");
-        }
-    </script>
-</body>
+            };
+        </script>
+        <style>
+            .text-gradient {
+                background-clip: text;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+            .no-scrollbar::-webkit-scrollbar {
+                display: none;
+            }
+            .no-scrollbar {
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+            }
+            .street-text-3d {
+                color: #ffffff;
+                text-shadow:
+                    4px 4px 0px #042f40,
+                    8px 8px 0px #0cf2f2;
+                transform: skew(-5deg) rotate(-2deg);
+            }
+        </style>
+    </head>
+    <body
+        class="bg-background-light dark:bg-background-dark text-text-main-light dark:text-main-dark font-body antialiased transition-colors duration-300"
+    >
+        <slot />
+        <script>
+            if (
+                localStorage.theme === "dark" ||
+                (!("theme" in localStorage) &&
+                    window.matchMedia("(prefers-color-scheme: dark)").matches)
+            ) {
+                document.documentElement.classList.add("dark");
+            } else {
+                document.documentElement.classList.remove("dark");
+            }
+        </script>
+    </body>
 </html>
